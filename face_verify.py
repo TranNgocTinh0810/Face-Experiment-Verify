@@ -31,7 +31,7 @@ if __name__ == '__main__':
         learner.load_state(conf, 'final.pth', True, True)
     learner.model.eval()
     print('learner loaded')
-    
+    args.update = True
     if args.update:
         targets, names = prepare_facebank(conf, learner.model, mtcnn, tta = args.tta)
         print('facebank updated')
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         print('facebank loaded')
 
     # inital camera
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(cv2.CAP_V4L2)
     cap.set(3,1280)
     cap.set(4,720)
     if args.save:
